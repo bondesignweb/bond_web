@@ -1,0 +1,65 @@
+import React from 'react';
+import PortfolioProject from '../components/PortfolioProject';
+
+export default function LaurelCreek() {
+  const projectData = {
+    title: 'LAUREL CREEK',
+    year: '2025',
+    projectType: 'New Construction',
+    designers: 'Laura Kramer & Jennifer Chipman',
+    location: 'Park City, Utah',
+    scope: 'New Construction',
+    contractor: 'Lane Myers Construction',
+    architect: 'Brandon Architects',
+    description: 'Rooted in traditional architecture yet bursting with color, pattern, and personality, this home celebrates the art of layering—where English florals meet modern silhouettes, and every room tells its own story. Designed with an eye for detail and a love for curated design, Laurel Creek blends refinement with whimsy, resulting in a timeless, character-filled retreat that feels both curated and deeply personal.',
+    images: [
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/29.png?w=1018&h=679&ssl=1', span: 'col-span-2' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/1.png?w=453&h=679&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/34.png?w=1017&h=679&ssl=1', span: 'col-span-2' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/2.png?w=331&h=496&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/33.png?w=744&h=496&ssl=1', span: 'col-span-2' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/5.png?w=331&h=496&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/14.png?w=331&h=496&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/32.png?w=743&h=496&ssl=1', span: 'col-span-2' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/37.png?w=1725&h=1150&ssl=1', span: 'col-span-2' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/3.png?w=767&h=1150&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/44.png?w=1725&h=1150&ssl=1', span: 'col-span-2' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/13.png?w=767&h=1150&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/42.png?w=1018&h=679&ssl=1', span: 'col-span-2' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/43.png?w=1017&h=679&ssl=1', span: 'col-span-2' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/15.png?w=453&h=679&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/17.png?w=798&h=1196&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/41.png?w=893&h=596&ssl=1', span: 'col-span-2' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/31.png?w=893&h=596&ssl=1', span: 'col-span-2' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/25.png?w=797&h=1196&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/35.png?w=744&h=496&ssl=1', span: 'col-span-2' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/12.png?w=331&h=496&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/11.png?w=331&h=496&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/Copy-of-Portfolio-Horizontal-Template.png?w=743&h=496&ssl=1', span: 'col-span-2' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/6.png?w=331&h=496&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/10.png?w=1246&h=1868&ssl=1', span: 'col-span-2' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/23.png?w=1246&h=1868&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/8.png?w=331&h=496&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/38.png?w=744&h=496&ssl=1', span: 'col-span-2' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/20.png?w=331&h=496&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/39.png?w=743&h=496&ssl=1', span: 'col-span-2' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/22.png?w=331&h=496&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/21.png?w=586&h=878&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/9.png?w=586&h=878&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/40.png?w=1316&h=878&ssl=1', span: 'col-span-2' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/19.png?w=397&h=595&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/18.png?w=397&h=595&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/30.png?w=892&h=595&ssl=1', span: 'col-span-2' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/28.png?w=397&h=595&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/27.png?w=397&h=595&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/45.png?w=1064&h=710&ssl=1', span: 'col-span-2' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/7.png?w=474&h=710&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/24.png?w=473&h=710&ssl=1', span: 'col-span-1' },
+    { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/26.png?w=473&h=710&ssl=1', span: 'col-span-1' }
+    ],
+    prevProject: 'CanyonCool',
+    nextProject: 'FifthAvenueRanch'
+  };
+
+  return <PortfolioProject projectData={projectData} />;
+}

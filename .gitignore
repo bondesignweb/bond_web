@@ -1,0 +1,16 @@
+node_modules/
+.npm/
+.bash_history
+.git-credentials
+.cache/
+*.mov
+*.zip
+dist/
+uploads/
+EmployeeHeadshots/
+fontsbond/
+api/node_modules/
+api/bond.db
+bon_admin/
+*.log
+.vite/

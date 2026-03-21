@@ -1,0 +1,176 @@
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { createPageUrl } from '../utils';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const projects = [
+  {
+    title: 'Canyon Cool',
+    image: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2026/01/1.jpg?w=744&h=496&ssl=1',
+    slug: 'CanyonCool',
+    category: 'Remodel',
+    location: 'Park City'
+  },
+  {
+    title: 'Laurel Creek',
+    image: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/10/29.png?w=1018&h=679&ssl=1',
+    slug: 'LaurelCreek',
+    category: 'New Construction',
+    location: 'Park City'
+  },
+  {
+    title: 'Fifth Avenue Ranch',
+    image: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/07/1-2.png?w=798&h=1196&ssl=1',
+    slug: 'FifthAvenueRanch',
+    category: 'Interior Furnishings',
+    location: 'Salt Lake City'
+  },
+  {
+    title: 'The Bridge House',
+    image: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/08/6.png?w=1018&h=679&ssl=1',
+    slug: 'TheBridgeHouse',
+    category: 'New Construction',
+    location: 'Park City'
+  },
+  {
+    title: 'Into The Woods',
+    image: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2022/05/LindsaySalazar-7.jpg?w=1018&h=679&ssl=1',
+    slug: 'IntoTheWoods',
+    category: 'Remodel',
+    location: 'Salt Lake City'
+  },
+  {
+    title: 'Sapphire Ridge',
+    image: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/05/1.png?w=1018&h=679&ssl=1',
+    slug: 'SapphireRidge',
+    category: 'New Construction',
+    location: 'Deer Valley'
+  },
+  {
+    title: 'Modern Meadow Remodel',
+    image: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/04/Untitled-design-1-scaled.jpg?w=1018&h=679&ssl=1',
+    slug: 'ModernMeadowRemodel',
+    category: 'Remodel',
+    location: 'Park City'
+  },
+  {
+    title: 'The Court House',
+    image: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2024/03/Court-House-14.jpg?w=860&h=574&ssl=1',
+    slug: 'TheCourtHouse',
+    category: 'Interior Furnishings',
+    location: 'Deer Valley'
+  },
+  {
+    title: 'Summit 4',
+    image: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2025/02/380A0404-Edit-scaled.jpg?w=862&h=575&ssl=1',
+    slug: 'Summit4',
+    category: 'New Construction',
+    location: 'Deer Valley'
+  }
+];
+
+const categories = ['All', 'New Construction', 'Remodel', 'Interior Furnishings'];
+const locations = ['All Locations', 'Park City', 'Salt Lake City', 'Deer Valley'];
+
+export default function Portfolio() {
+  const [activeCategory, setActiveCategory] = useState('All');
+  const [activeLocation, setActiveLocation] = useState('All Locations');
+
+  const filtered = projects.filter(p => {
+    const categoryMatch = activeCategory === 'All' || p.category === activeCategory;
+    const locationMatch = activeLocation === 'All Locations' || p.location === activeLocation;
+    return categoryMatch && locationMatch;
+  });
+
+  return (
+    <div className="bg-[#F8F6F3] pt-20">
+      {/* Filter Bar */}
+      <div className="sticky top-16 z-40 bg-[#F8F6F3] border-b border-[#E5E1DB] px-6 md:px-16 py-4 flex flex-wrap gap-4 items-center justify-between">
+        {/* Category filters */}
+        <div className="flex flex-wrap gap-2">
+          {categories.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`text-xs tracking-[0.15em] px-4 py-2 border transition-colors duration-200 ${
+                activeCategory === cat
+                  ? 'bg-[#3D3D3D] text-white border-[#3D3D3D]'
+                  : 'border-[#D1CCC4] text-[#6B6B6B] hover:border-[#3D3D3D] hover:text-[#3D3D3D]'
+              }`}
+            >
+              {cat.toUpperCase()}
+            </button>
+          ))}
+        </div>
+
+        {/* Location filter */}
+        <div className="flex flex-wrap gap-2">
+          {locations.map(loc => (
+            <button
+              key={loc}
+              onClick={() => setActiveLocation(loc)}
+              className={`text-xs tracking-[0.15em] px-4 py-2 border transition-colors duration-200 ${
+                activeLocation === loc
+                  ? 'bg-[#8B7355] text-white border-[#8B7355]'
+                  : 'border-[#D1CCC4] text-[#6B6B6B] hover:border-[#8B7355] hover:text-[#8B7355]'
+              }`}
+            >
+              {loc.toUpperCase()}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Portfolio Grid */}
+      <AnimatePresence mode="wait">
+        {filtered.length === 0 ? (
+          <motion.div
+            key="empty"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="flex items-center justify-center h-64 text-[#9B9B9B] text-sm tracking-[0.15em]"
+          >
+            NO PROJECTS MATCH YOUR FILTERS
+          </motion.div>
+        ) : (
+          <motion.div key="grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            {filtered.map((project) => (
+              <motion.div
+                key={project.slug}
+                layout
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="relative group cursor-pointer"
+              >
+                <Link to={createPageUrl(project.slug)} className="block">
+                  <div className="relative h-[70vh] md:h-screen overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-500" />
+                    <div className="absolute inset-0 flex items-center justify-start px-8 md:px-20 lg:px-32">
+                      <div>
+                        <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white tracking-[0.1em] uppercase mb-2">
+                          {project.title}
+                        </h2>
+                        <p className="text-white/70 text-xs tracking-[0.2em]">
+                          {project.category.toUpperCase()} · {project.location.toUpperCase()}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
