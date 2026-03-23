@@ -1,6 +1,7 @@
 import PageTracker from "@/components/PageTracker";
+import PasswordGate from "@/components/PasswordGate";
 import { pagesConfig } from './pages.config'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Admin from "@/pages/Admin";
 
 const { Pages, Layout, mainPage } = pagesConfig;
@@ -11,9 +12,12 @@ const LayoutWrapper = ({ children, currentPageName }) => Layout ?
   <Layout currentPageName={currentPageName}>{children}</Layout>
   : <>{children}</>;
 
-function App() {
-  return (
-    <Router>
+function GatedApp() {
+  const location = useLocation();
+  const isAdmin = location.pathname === '/admin';
+
+  const content = (
+    <>
       <PageTracker />
       <Routes>
         <Route path="/" element={
@@ -47,6 +51,19 @@ function App() {
           </LayoutWrapper>
         } />
       </Routes>
+    </>
+  );
+
+  // Admin bypasses the password gate
+  if (isAdmin) return content;
+
+  return <PasswordGate>{content}</PasswordGate>;
+}
+
+function App() {
+  return (
+    <Router>
+      <GatedApp />
     </Router>
   );
 }
