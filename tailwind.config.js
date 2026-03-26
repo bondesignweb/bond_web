@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        serif: ['"SenlotSerifExtLight"', '"IvyMode"', 'Georgia', 'serif'],
-        sans: ['"Futura LT"', '"Outfit"', 'system-ui', 'sans-serif'],
+                serif: ['"SenlotSerifExtLight"', 'Georgia', 'serif'],
+                sans: ['"Futura LT"', 'system-ui', 'sans-serif'],
       },
     },
   },
