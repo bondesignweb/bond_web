@@ -5,14 +5,24 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const projects = [
   { title: 'Canyon Cool', image: '/uploads/portfolio-covers/canyon-cool.png', slug: 'CanyonCool', category: 'Remodel', year: '2026' },
+  { title: 'The Back Nine', image: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2026/03/1-copy.png', slug: 'TheBackNine', category: 'New Construction', year: '2026' },
   { title: 'Laurel Creek', image: '/uploads/portfolio-covers/laurel-creek.png', slug: 'LaurelCreek', category: 'New Construction', year: '2025' },
   { title: 'Fifth Avenue Ranch', image: '/uploads/portfolio-covers/fifth-avenue-ranch.png', slug: 'FifthAvenueRanch', category: 'Interior Furnishings', year: '2025' },
   { title: 'The Bridge House', image: '/uploads/portfolio-covers/the-bridge-house.png', slug: 'TheBridgeHouse', category: 'New Construction', year: '2025' },
-  { title: 'Into The Woods', image: '/uploads/portfolio-covers/into-the-woods.png', slug: 'IntoTheWoods', category: 'Remodel', year: '2022' },
   { title: 'Sapphire Ridge', image: '/uploads/portfolio-covers/sapphire-ridge.png', slug: 'SapphireRidge', category: 'New Construction', year: '2025' },
+  { title: 'The Lake House', image: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2024/02/2023-01-15-Bond-Eden-Lakehouse-4039-nicole-gerulat.jpg', slug: 'TheLakeHouse', category: 'New Construction', year: '2024' },
+  { title: 'A Fresh Perspective', image: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2024/01/380A4419-HDR-Edit-scaled.jpg', slug: 'AFreshPerspective', category: 'New Construction', year: '2024' },
+  { title: 'Desert Spanish Retreat', image: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2023/07/Desert-Spanish-Retreat-Living.jpg', slug: 'DesertSpanishRetreat', category: 'Interior Furnishings', year: '2023' },
+  { title: 'The Bond Studio', image: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2023/02/2023-02-08-Bond-Studio4901-nicole-gerulat-1.jpg', slug: 'TheBondStudio', category: 'Remodel', year: '2023' },
+  { title: 'Into The Woods', image: '/uploads/portfolio-covers/into-the-woods.png', slug: 'IntoTheWoods', category: 'Remodel', year: '2022' },
   { title: 'Modern Meadow Remodel', image: '/uploads/portfolio-covers/modern-meadow-remodel.png', slug: 'ModernMeadowRemodel', category: 'Remodel', year: '2022' },
   { title: 'The Court House', image: '/uploads/portfolio-covers/the-court-house.jpg', slug: 'TheCourtHouse', category: 'Interior Furnishings', year: '2022' },
   { title: 'Summit 4', image: '/uploads/portfolio-covers/summit-4.png', slug: 'Summit4', category: 'New Construction', year: '2022' },
+  { title: 'Mountain State Of Mind', image: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2022/11/elegant-mountain-modern-living-room.jpg', slug: 'MountainStateOfMind', category: 'New Construction', year: '2022' },
+  { title: 'Speak Easy, Play Hard', image: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2022/06/Bond-Design-Company-Speak-Easy-Living-Room-9.jpg', slug: 'SpeakeasyPlayHard', category: 'Remodel', year: '2022' },
+  { title: 'Fresh Take On French', image: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2022/08/Fresh-French-2.jpg', slug: 'UpcomingFreshTakeOnFrench', category: 'New Construction', year: '2022' },
+  { title: 'Good Things Come In Small Packages', image: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2022/06/good-things-door-and-coat-rack.jpg', slug: 'GoodThingsSmallPackages', category: 'Remodel', year: '2022' },
+  { title: 'Fly Right In', image: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2022/08/Kitchen-2.jpg', slug: 'FlyRightIn', category: 'Interior Furnishings', year: '2022' },
 ];
 
 const categories = ['All', 'New Construction', 'Remodel', 'Interior Furnishings'];
