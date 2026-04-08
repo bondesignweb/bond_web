@@ -33,7 +33,7 @@ export default function Home() {
           className="absolute inset-0 flex items-center justify-center z-10"
         >
           <div className="text-center text-white">
-            <h1 className="font-serif text-7xl md:text-9xl tracking-[0.3em] font-extralight">BOND</h1>
+            <h1 className="text-7xl md:text-9xl tracking-[0.3em]" style={{ fontFamily: "IvyMode", fontWeight: 300 }}>BOND</h1>
             <p className="font-serif tracking-[0.5em] text-sm md:text-lg mt-4 font-light">DESIGN COMPANY</p>
           </div>
         </motion.div>

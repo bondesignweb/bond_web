@@ -86,7 +86,7 @@ export default function Portfolio() {
       {/* Sticky Filters */}
       <section className="sticky top-0 z-30 bg-[#F8F6F3]/95 backdrop-blur-md border-b border-[#E5E1DC]">
         <div className="max-w-[1200px] mx-auto px-6 md:px-12 lg:px-20 py-4">
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center justify-center gap-2">
             {categories.map(cat => (
               <button
                 key={cat}

@@ -2,7 +2,14 @@
 @font-face {
   font-family: 'SenlotSerifExtLight';
   src: url('/fonts/SenlotSerif-ExtLig.otf') format('opentype');
-    font-weight: 400;
+    font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IvyMode';
+  src: url('/fonts/IvyMode-Light.otf') format('opentype');
+  font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
