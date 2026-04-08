@@ -11,7 +11,7 @@ export default function TheBondStudio() {
     scope: 'Remodel & Furnishings',
     contractor: 'Magleby Construction',
     architect: '',
-    description: 'Balanced, sophisticated, and refreshingly modern. The Bond Studio has private and collaborative offices to enhance creativity and maximize meeting space. We can't wait for you to stop by!',
+    description: 'Balanced, sophisticated, and refreshingly modern. The Bond Studio has private and collaborative offices to enhance creativity and maximize meeting space. We can\'t wait for you to stop by!',
     images: [
     { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2023/02/2023-02-08-Bond-Studio4901-nicole-gerulat-1.jpg', span: 'col-span-2' },
     { url: 'https://i0.wp.com/bonddesigncompany.com/wp-content/uploads/2023/02/2023-02-08-Bond-Studio4977-nicole-gerulat.jpg', span: 'col-span-1' },
