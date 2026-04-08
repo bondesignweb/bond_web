@@ -47,6 +47,16 @@
  *
  * The mainPage value must match a key in the PAGES object exactly.
  */
+import AFreshPerspective from './pages/AFreshPerspective';
+import DesertSpanishRetreat from './pages/DesertSpanishRetreat';
+import FlyRightIn from './pages/FlyRightIn';
+import GoodThingsSmallPackages from './pages/GoodThingsSmallPackages';
+import MountainStateOfMind from './pages/MountainStateOfMind';
+import SpeakeasyPlayHard from './pages/SpeakeasyPlayHard';
+import TheBackNine from './pages/TheBackNine';
+import TheBondStudio from './pages/TheBondStudio';
+import TheLakeHouse from './pages/TheLakeHouse';
+import UpcomingFreshTakeOnFrench from './pages/UpcomingFreshTakeOnFrench';
 import About from './pages/About';
 import BlogBotanicalPrintsLaurelCreek from './pages/BlogBotanicalPrintsLaurelCreek';
 import BlogFloralWallcoveringsLaurelCreek from './pages/BlogFloralWallcoveringsLaurelCreek';
@@ -93,6 +103,16 @@ export const PAGES = {
     "TheBridgeHouse": TheBridgeHouse,
     "TheCourtHouse": TheCourtHouse,
     "Press": Press,
+  "AFreshPerspective": AFreshPerspective,
+  "DesertSpanishRetreat": DesertSpanishRetreat,
+  "FlyRightIn": FlyRightIn,
+  "GoodThingsSmallPackages": GoodThingsSmallPackages,
+  "MountainStateOfMind": MountainStateOfMind,
+  "SpeakeasyPlayHard": SpeakeasyPlayHard,
+  "TheBackNine": TheBackNine,
+  "TheBondStudio": TheBondStudio,
+  "TheLakeHouse": TheLakeHouse,
+  "UpcomingFreshTakeOnFrench": UpcomingFreshTakeOnFrench,
 }
 
 export const pagesConfig = {
