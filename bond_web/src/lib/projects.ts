@@ -8,6 +8,11 @@ export interface Project {
   year: string;
   description: string;
   gallery: string[];
+  tagline?: string;
+  story?: string;
+  designer?: string;
+  builder?: string;
+  architect?: string;
 }
 
 export const projects: Project[] = [
@@ -20,7 +25,56 @@ export const projects: Project[] = [
     location: "Park City, Utah",
     year: "2024",
     description: "Nestled in the heart of a Park City canyon, this residence embraces the landscape with floor-to-ceiling windows and a material palette drawn from the surrounding terrain. Clean architectural lines are softened by warm wood tones, textured stone, and curated furnishings that invite you to settle in and stay.",
-    gallery: ["/images/380A5980-Edit-scaled.jpg", "/images/380A5871-Edit-scaled.jpg", "/images/380A6184-Edit-scaled.jpg"],
+    tagline: "Cozy family game nights after a day on the slopes",
+    story:
+      "Canyon Cool is a contemporary mountain retreat designed to feel equal parts elevated and easy. Sage-green millwork, custom built-ins, and warm walnut tones set the tone in the kitchen and dining area, while a layered material palette of leather, stone, and tactile fabrics carries through the home. The design balances refined craftsmanship with a relaxed, livable spirit — a place to host friends, gather the family, and slow down after a day in the mountains.",
+    designer: "Jennifer Chipman",
+    builder: "Bond Design Company",
+    architect: "Upwall Design Architects",
+    gallery: [
+      "/images/380A5980-Edit-scaled.jpg",
+      "/images/380A5871-Edit-scaled.jpg",
+      "/images/380A6184-Edit-scaled.jpg",
+      "/images/380A6516-Edit-scaled.jpg",
+      "/images/380A6650-Edit-scaled.jpg",
+      "/images/380A6320-Edit-scaled.jpg",
+      "/images/380A6353-Edit-scaled.jpg",
+      "/images/380A0654-Edit-scaled.jpg",
+      "/images/380A0924-Edit-scaled.jpg",
+      "/images/380A0307-Edit-scaled.jpg",
+      "/images/380A0404-Edit-scaled.jpg",
+      "/images/380A0422-Edit-scaled.jpg",
+    ],
+  },
+  {
+    slug: "the-back-nine",
+    title: "The Back Nine",
+    subtitle: "A clubhouse retreat where golf meets gathering",
+    img: "/images/380A6184-Edit-scaled.jpg",
+    category: "New Construction",
+    location: "Park City, Utah",
+    year: "2024",
+    description: "Designed around long afternoons and longer dinners, The Back Nine balances the discipline of clubhouse design with the warmth of a family home. Layered wools, weathered leathers, and a low, grounded palette create rooms that hold their own without crowding the view.",
+    gallery: [
+      "/images/380A6184-Edit-scaled.jpg",
+      "/images/380A6650-Edit-scaled.jpg",
+      "/images/380A4159-HDR-Edit-scaled.jpg",
+    ],
+  },
+  {
+    slug: "mountain-cottage-revival",
+    title: "Mountain Cottage Revival",
+    subtitle: "A historic cottage reimagined for modern mountain living",
+    img: "/images/2023-01-15-V2-Bond-Eden-Lakehouse-3964-nicole-gerulat.jpg",
+    category: "Remodel",
+    location: "Park City, Utah",
+    year: "2024",
+    description: "Mountain Cottage Revival keeps the soul of the original structure intact — exposed beams, timber millwork, and the rhythm of small-paned windows — while threading in the comforts of a modern home. The result is a quiet, unfussy retreat that honors its history without freezing it in place.",
+    gallery: [
+      "/images/2023-01-15-V2-Bond-Eden-Lakehouse-3964-nicole-gerulat.jpg",
+      "/images/Court-House-1.jpg",
+      "/images/mountiain-home-in-park-city-utah.jpg",
+    ],
   },
   {
     slug: "laurel-creek",

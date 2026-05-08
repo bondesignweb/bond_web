@@ -1,98 +1,110 @@
 "use client";
-import { useEffect, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import Link from "next/link";
+import ScrollReveal from "@/components/ScrollReveal";
+import PageTransition from "@/components/PageTransition";
+import { projects } from "@/lib/projects";
+
+const headingFont = { fontFamily: "var(--font-display)" } as const;
+const bodyFont = { fontFamily: "var(--font-body)" } as const;
+
+const HOME_GRID_SLUGS = [
+  "canyon-cool",
+  "the-back-nine",
+  "laurel-creek",
+  "fifth-avenue-ranch",
+  "the-bridge-house",
+  "mountain-cottage-revival",
+  "into-the-woods",
+  "modern-meadow-remodel",
+  "speak-easy-play-hard",
+];
 
 export default function HomePage() {
-  const [showContent, setShowContent] = useState(false);
-  useEffect(() => {
-    const timer = setTimeout(() => setShowContent(true), 500);
-    return () => clearTimeout(timer);
-  }, []);
+  const tiles = HOME_GRID_SLUGS.map((slug) =>
+    projects.find((p) => p.slug === slug),
+  ).filter((p): p is NonNullable<typeof p> => Boolean(p));
 
   return (
-    <div className="bg-[#F8F6F3]">
-      <section className="relative h-screen w-full overflow-hidden bg-black flex items-center justify-center">
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: showContent ? 1 : 0 }} transition={{ duration: 1.5 }} className="relative z-10 text-center">
-          <h1 className="font-serif text-8xl text-white tracking-widest font-light">BOND</h1>
-          <p className="text-white/80 text-sm tracking-widest mt-4 font-light">DESIGN COMPANY</p>
-        </motion.div>
-      </section>
-
-      <section className="py-32 px-6 bg-[#F8F6F3]">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-[#8B7355] text-xs tracking-widest mb-6">BOUTIQUE INTERIOR DESIGN</p>
-          <h2 className="font-serif text-6xl text-[#3D3D3D] mb-8 font-light">We don't just design spaces. We design experiences.</h2>
-          <p className="text-[#6B6B6B] text-lg font-light">Bond Design Company is a full-service, boutique interior design firm based in Park City, Utah.</p>
+    <PageTransition>
+      {/* 1. Hero — moody interior + overlay quote */}
+      <section className="relative h-screen min-h-[640px] w-full overflow-hidden bg-black">
+        <Image
+          src="/images/380A5980-Edit-scaled.jpg"
+          alt=""
+          fill
+          priority
+          className="object-cover opacity-80"
+        />
+        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute top-8 right-8 md:top-10 md:right-10 z-10 border border-white/40 px-5 py-2">
+          <span
+            className="text-white/90 text-[10px] tracking-[0.4em] uppercase font-light"
+            style={bodyFont}
+          >
+            Video Preview
+          </span>
+        </div>
+        <div className="relative z-10 h-full flex items-center justify-center px-6">
+          <h1
+            className="text-white text-2xl md:text-4xl lg:text-5xl font-light italic text-center max-w-4xl leading-[1.4] tracking-[0.02em]"
+            style={headingFont}
+          >
+            &ldquo;Each home tells a unique story&hellip;
+            <br />
+            shaped by the way you live.&rdquo;
+          </h1>
         </div>
       </section>
 
-      <section className="py-20 px-6 bg-[#F8F6F3]">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          <div className="relative w-full h-96">
-            <Image src="/images/bonding-experience-bg.jpg" alt="Bonding Experience" fill className="object-cover" />
+      {/* 2. Explore Our Projects — 3x3 grid */}
+      <section className="py-20 md:py-24 px-6 md:px-12 lg:px-20">
+        <ScrollReveal>
+          <div className="text-center mb-12">
+            <span
+              className="block text-[10px] tracking-[0.4em] uppercase text-[var(--color-text-accent)] font-light mb-4"
+              style={bodyFont}
+            >
+              Explore Our Projects
+            </span>
+            <span className="block w-px h-8 bg-[var(--color-text-accent)] mx-auto" />
           </div>
-          <div>
-            <p className="text-[#8B7355] text-xs tracking-widest mb-4">OUR APPROACH</p>
-            <h3 className="font-serif italic text-4xl text-[#3D3D3D] mb-6 font-light">A Bonding Experience</h3>
-            <p className="text-[#6B6B6B] leading-relaxed font-light mb-4">We believe that we are each fundamentally bonded to our environments and that bond should feel intentional, personal, and deeply yours.</p>
-            <Link href="/services" className="inline-block border border-[#3D3D3D] text-[#3D3D3D] px-8 py-3 text-xs tracking-widest uppercase hover:bg-[#3D3D3D] hover:text-white transition-all font-light">Our Services</Link>
-          </div>
+        </ScrollReveal>
+        <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+          {tiles.map((p, i) => (
+            <ScrollReveal key={p.slug} delay={i * 0.04}>
+              <Link
+                href={`/portfolio/${p.slug}`}
+                className="block group"
+              >
+                <div className="relative w-full aspect-[4/3] overflow-hidden bg-[var(--color-linen)]">
+                  <Image
+                    src={p.img}
+                    alt={p.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                  />
+                </div>
+                <div className="flex items-baseline justify-between mt-3 px-1">
+                  <span
+                    className="text-[11px] tracking-[0.25em] uppercase font-light text-[var(--color-charcoal)]"
+                    style={bodyFont}
+                  >
+                    {p.title}
+                  </span>
+                  <span
+                    className="text-[var(--color-text-accent)] text-xs"
+                    style={bodyFont}
+                  >
+                    →
+                  </span>
+                </div>
+              </Link>
+            </ScrollReveal>
+          ))}
         </div>
       </section>
-
-      <section className="py-20 px-6 bg-[#3D3D3D]">
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div><p className="font-serif text-4xl text-white font-light">2019</p><p className="text-[#B8B8B8] text-xs font-light">FOUNDED</p></div>
-          <div><p className="font-serif text-4xl text-white font-light">100+</p><p className="text-[#B8B8B8] text-xs font-light">PROJECTS</p></div>
-          <div><p className="font-serif text-4xl text-white font-light">6</p><p className="text-[#B8B8B8] text-xs font-light">PRESS</p></div>
-          <div><p className="font-serif text-4xl text-white font-light">11</p><p className="text-[#B8B8B8] text-xs font-light">TEAM</p></div>
-        </div>
-      </section>
-
-      <section className="py-32 px-6 bg-[#F8F6F3]">
-        <div className="text-center mb-16">
-          <p className="text-[#8B7355] text-xs tracking-widest mb-3">EXPLORE</p>
-          <h2 className="font-serif text-5xl text-[#3D3D3D] mb-12 font-light">Our Work & Journal</h2>
-        </div>
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
-          <Link href="/portfolio" className="block relative h-96 group overflow-hidden">
-            <Image src="/images/380A6516-Edit-scaled.jpg" alt="Portfolio" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
-            <div className="absolute inset-0 bg-black/30 flex flex-col justify-end p-8">
-              <h3 className="font-serif text-4xl text-white tracking-wide mb-4 font-light">Portfolio</h3>
-              <span className="inline-block border border-white text-white px-6 py-2 text-xs tracking-widest uppercase w-fit font-light">View Portfolio</span>
-            </div>
-          </Link>
-          <Link href="/journal" className="block relative h-96 group overflow-hidden">
-            <Image src="/images/380A5871-Edit-scaled.jpg" alt="Journal" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
-            <div className="absolute inset-0 bg-black/30 flex flex-col justify-end p-8">
-              <h3 className="font-serif text-4xl text-white tracking-wide mb-4 font-light">Journal</h3>
-              <span className="inline-block border border-white text-white px-6 py-2 text-xs tracking-widest uppercase w-fit font-light">View Journal</span>
-            </div>
-          </Link>
-        </div>
-      </section>
-
-      <section className="py-32 px-6 bg-[#EDE9E3]">
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="text-[#8B7355] text-xs tracking-widest mb-4">HOW WE WORK</p>
-          <h3 className="font-serif text-5xl text-[#3D3D3D] mb-8 font-light">From Vision to Reality</h3>
-          <p className="text-[#6B6B6B] leading-relaxed font-light mb-12">Our full-service process covers everything from selections to final installation.</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-            {[1,2,3,4].map(i=><div key={i}><div className="w-12 h-12 rounded-full border border-[#8B7355] flex items-center justify-center mx-auto mb-3"><span className="font-serif font-light">{i}</span></div></div>)}
-          </div>
-          <Link href="/services" className="inline-block border border-[#3D3D3D] text-[#3D3D3D] px-8 py-3 text-xs tracking-widest uppercase hover:bg-[#3D3D3D] hover:text-white transition-all font-light">Learn More</Link>
-        </div>
-      </section>
-
-      <section className="py-32 px-6 bg-[#F8F6F3]">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-serif italic text-5xl text-[#3D3D3D] mb-6 font-light">Let's BOND</h2>
-          <p className="text-[#6B6B6B] mb-8 text-lg font-light">Your home should tell your story. Each project comes with unique needs.</p>
-          <Link href="/contact" className="inline-block border border-[#3D3D3D] text-[#3D3D3D] px-8 py-3 text-xs tracking-widest uppercase hover:bg-[#3D3D3D] hover:text-white transition-all font-light">Get Started</Link>
-        </div>
-      </section>
-    </div>
+    </PageTransition>
   );
 }
