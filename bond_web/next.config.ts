@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  
+  output: "standalone",
+  outputFileTracingRoot: "/root/bond_web",
+
   images: {
     remotePatterns: [
       {
