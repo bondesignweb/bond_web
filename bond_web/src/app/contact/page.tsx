@@ -4,12 +4,63 @@ import Image from "next/image";
 import ScrollReveal from "@/components/ScrollReveal";
 import PageTransition from "@/components/PageTransition";
 
-export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false);
-  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); setSubmitted(true); };
+const SERVICES = ["New Construction", "Remodel", "Interior Furnishings"];
 
-  const inputClass = "w-full bg-transparent border-b border-[var(--color-linen)] py-3 text-sm font-light text-[var(--color-charcoal)]";
-  const labelClass = "text-[10px] uppercase tracking-[0.25em] text-[var(--color-stone)] font-light block mb-2";
+export default function ContactPage() {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [services, setServices] = useState<string[]>([]);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [location, setLocation] = useState("");
+  const [message, setMessage] = useState("");
+
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const toggleService = (s: string) => {
+    setServices((prev) =>
+      prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s],
+    );
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          phone,
+          email,
+          services,
+          startDate,
+          endDate,
+          location,
+          message,
+        }),
+      });
+      if (!res.ok) {
+        const data = (await res.json().catch(() => ({}))) as { error?: string };
+        throw new Error(data.error ?? "Submission failed.");
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Submission failed.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const inputClass =
+    "w-full bg-transparent border-b border-[var(--color-linen)] py-3 text-sm font-light text-[var(--color-charcoal)]";
+  const labelClass =
+    "text-[10px] uppercase tracking-[0.25em] text-[var(--color-stone)] font-light block mb-2";
 
   return (
     <PageTransition>
@@ -49,24 +100,56 @@ export default function ContactPage() {
                   <form onSubmit={handleSubmit} className="space-y-7">
                     <div>
                       <label className={labelClass} style={{ fontFamily: "var(--font-body)" }}>Full Name *</label>
-                      <input type="text" required className={inputClass} style={{ fontFamily: "var(--font-body)" }} />
+                      <input
+                        type="text"
+                        name="name"
+                        required
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        className={inputClass}
+                        style={{ fontFamily: "var(--font-body)" }}
+                      />
                     </div>
                     <div className="grid sm:grid-cols-2 gap-7">
                       <div>
                         <label className={labelClass} style={{ fontFamily: "var(--font-body)" }}>Phone *</label>
-                        <input type="tel" required className={inputClass} style={{ fontFamily: "var(--font-body)" }} />
+                        <input
+                          type="tel"
+                          name="phone"
+                          required
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          className={inputClass}
+                          style={{ fontFamily: "var(--font-body)" }}
+                        />
                       </div>
                       <div>
                         <label className={labelClass} style={{ fontFamily: "var(--font-body)" }}>Email *</label>
-                        <input type="email" required className={inputClass} style={{ fontFamily: "var(--font-body)" }} />
+                        <input
+                          type="email"
+                          name="email"
+                          required
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          className={inputClass}
+                          style={{ fontFamily: "var(--font-body)" }}
+                        />
                       </div>
                     </div>
                     <div>
                       <label className={labelClass} style={{ fontFamily: "var(--font-body)" }}>Services interested in?</label>
                       <div className="flex flex-wrap gap-4 mt-1">
-                        {["New Construction", "Remodel", "Interior Furnishings"].map((s) => (
+                        {SERVICES.map((s) => (
                           <label key={s} className="flex items-center gap-2 text-sm text-[var(--color-stone)] font-light cursor-pointer" style={{ fontFamily: "var(--font-body)" }}>
-                            <input type="checkbox" className="accent-[var(--color-champagne)]" /> {s}
+                            <input
+                              type="checkbox"
+                              name="services"
+                              value={s}
+                              checked={services.includes(s)}
+                              onChange={() => toggleService(s)}
+                              className="accent-[var(--color-champagne)]"
+                            />{" "}
+                            {s}
                           </label>
                         ))}
                       </div>
@@ -74,23 +157,60 @@ export default function ContactPage() {
                     <div className="grid sm:grid-cols-2 gap-7">
                       <div>
                         <label className={labelClass} style={{ fontFamily: "var(--font-body)" }}>Start Date</label>
-                        <input type="date" className={inputClass} style={{ fontFamily: "var(--font-body)" }} />
+                        <input
+                          type="date"
+                          name="startDate"
+                          value={startDate}
+                          onChange={(e) => setStartDate(e.target.value)}
+                          className={inputClass}
+                          style={{ fontFamily: "var(--font-body)" }}
+                        />
                       </div>
                       <div>
                         <label className={labelClass} style={{ fontFamily: "var(--font-body)" }}>End Date</label>
-                        <input type="date" className={inputClass} style={{ fontFamily: "var(--font-body)" }} />
+                        <input
+                          type="date"
+                          name="endDate"
+                          value={endDate}
+                          onChange={(e) => setEndDate(e.target.value)}
+                          className={inputClass}
+                          style={{ fontFamily: "var(--font-body)" }}
+                        />
                       </div>
                     </div>
                     <div>
                       <label className={labelClass} style={{ fontFamily: "var(--font-body)" }}>Project location?</label>
-                      <input type="text" className={inputClass} style={{ fontFamily: "var(--font-body)" }} />
+                      <input
+                        type="text"
+                        name="location"
+                        value={location}
+                        onChange={(e) => setLocation(e.target.value)}
+                        className={inputClass}
+                        style={{ fontFamily: "var(--font-body)" }}
+                      />
                     </div>
                     <div>
                       <label className={labelClass} style={{ fontFamily: "var(--font-body)" }}>Tell us about your project</label>
-                      <textarea rows={4} className={`${inputClass} resize-none`} style={{ fontFamily: "var(--font-body)" }} />
+                      <textarea
+                        name="message"
+                        rows={4}
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        className={`${inputClass} resize-none`}
+                        style={{ fontFamily: "var(--font-body)" }}
+                      />
                     </div>
-                    <button type="submit" className="btn-luxury btn-filled mt-2">
-                      <span>Submit Inquiry</span>
+                    {error && (
+                      <p className="text-sm font-light text-red-700" style={{ fontFamily: "var(--font-body)" }}>
+                        {error}
+                      </p>
+                    )}
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="btn-luxury btn-filled mt-2 disabled:opacity-60"
+                    >
+                      <span>{submitting ? "Sending…" : "Submit Inquiry"}</span>
                     </button>
                   </form>
                 )}
